@@ -1,0 +1,5 @@
+#!/bin/sh
+
+export PATH="$HOME/foubot/bin:$PATH"
+
+exec urxvt -fn "xft:DejaVu Sans Mono:size=25" -b 8 -e hwatch -ctx -n 15 -- run-wego.sh
