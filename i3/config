@@ -189,6 +189,4 @@ bar {
         status_command i3status
 }
 
-exec_always --no-startup-id "xrdb -merge ~/.Xresources"
-
-exec_always --no-startup-id "chpst -L foubot9000.lock -- runsvdir foubot/sv"
+exec_always --no-startup-id "chpst -L foubot9000.lock -- foubot/bin/burrito.sh"

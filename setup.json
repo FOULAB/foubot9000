@@ -1,0 +1,23 @@
+{
+    "files": {
+        "Xresources": ".Xresources"
+    },
+    "dirs": {
+        "i3": ".config/i3",
+        "src": "foubot"
+    },
+    "weechat": [
+        "/server add libera irc.libera.chat -autoconnect",
+        "/set irc.server.libera.autojoin \"#foulab\"",
+        "/set irc.server.libera.nicks \"FouBot9000,FouBot9001,FouBot9002,FouBot9003,FouBot9004\"",
+        "/set irc.server.libera.realname \"Foulab IRC Display\"",
+        "/set irc.server.libera.username \"fb9000\"",
+        "/set weechat.bar.buflist.hidden on",
+        "/set weechat.bar.fset.hidden on",
+        "/set weechat.bar.nicklist.hidden on",
+        "/set weechat.bar.title.hidden on",
+        "/set weechat.bar.input.hidden on",
+        "/set logger.level.irc 0",
+        "/set logger.level.core.weechat 0"
+    ]
+}
