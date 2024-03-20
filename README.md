@@ -33,10 +33,10 @@ target OS.
 
 2. With go installed on the system, run
     ```shell
-    CGO_ENABLED=0 GOOS=linux GOARCH=arm go build -o wego
+    CGO_ENABLED=0 GOOS=linux GOARCH=arm GOARM=6 go build -o wego
     ```
     For another architecture than the original RPi1,
-    [adjust `GOARCH` accordingly](https://go.dev/doc/install/source#environment)
+    [adjust `GOARCH` and `GOARM` accordingly](https://go.dev/doc/install/source#environment)
 
 3. Check that the binary is properly built `file wego`. Output should contain the right architecture,
     and ` statically linked`.
