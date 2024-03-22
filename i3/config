@@ -185,4 +185,6 @@ bar {
         status_command i3status
 }
 
+exec --no-startup-id "xset s off -dpms"
+
 exec_always --no-startup-id "chpst -L foubot9000.lock -- foubot/bin/burrito.sh"
