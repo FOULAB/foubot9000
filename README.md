@@ -9,15 +9,17 @@ setup.
     [hwatch](https://github.com/blacknon/hwatch).  
     Urxvt must have the 256color mode enabled, like the Debian package.
 
-1. As the foubot9000 user, run `install.py`.
+1. Ensure the user running foubot9000 has the required permissions to access the GPIO. On RPi OS, it's the`gpio` group.
 
-2. In `~/foubot/bin/`, provide a wego binary patched for
+2. As the foubot9000 user, run `install.py`.
+
+3. In `~/foubot/bin/`, provide a wego binary patched for
     [broken functionality](https://github.com/schachmat/wego/pull/175), along with a build of hwatch if not already
     installed via package manager.
 
-3. Generate an [OpenWeatherMap](https://openweathermap.org) API key.
+4. Generate an [OpenWeatherMap](https://openweathermap.org) API key.
 
-4. Run wego once to generate the config, then edit `~/.wegorc` to set the `awm-api-key`, and set `location` to
+5. Run wego once to generate the config, then edit `~/.wegorc` to set the `awm-api-key`, and set `location` to
     ```ini
     location=45.479600071690385,-73.5896074357722
     ```
