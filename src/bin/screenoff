@@ -1,0 +1,34 @@
+#!/bin/env python3
+
+import re
+import subprocess
+import sys
+import time
+
+BUTTON_PIN = 23
+
+def get_pin_state(pin: int) -> bool:
+    p = subprocess.run(["raspi-gpio", "get", str(pin)])
+    if p.returncode != 0:
+        print("Failed to run raspi-gpio")
+        return True
+    if not p.stdout:
+        print("No output from raspi-gpio")
+        return True
+    m = re.search(r"level=(\d+)", p.stdout)
+    return bool(int(m.group(1)))
+
+
+state = True
+
+while True:
+    time.sleep(2)
+    s = get_pin_state(BUTTON_PIN)
+    if s == state:
+        continue
+    else:
+        if s:
+            subprocess.run(["xset", "-dpms"], check=True)
+        else:
+            subprocess.run(["xset", "dpms", "force", "suspend"], check=True)
+        state = s
