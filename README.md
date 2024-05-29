@@ -28,8 +28,8 @@ setup.
 
 #### Patched wego
 
-These steps are required for as long as the fix for wego isn't merged and hasn't reached the packaged version on the
-target OS.
+These steps are required for as long as [the fix for wego](https://github.com/schachmat/wego/pull/175) isn't merged and
+hasn't reached the packaged version on the target OS.
 
 1. Clone the wego repo, and checkout the PR - OR -  apply the PR as a patch
 
