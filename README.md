@@ -58,7 +58,7 @@ hasn't reached the packaged version on the target OS.
     This is often packaged by distros, for example on Void Linux the correct one for a RPi1 is provided by the
     `cross-arm-linux-musleabi` package.
 
-3. Clone the hwatch repository or download&extract the source tarball.
+3. Clone the [hwatch repository](https://github.com/blacknon/hwatch) or download&extract the source tarball.
 
 4. Build hwatch with cargo:
     ```shell
