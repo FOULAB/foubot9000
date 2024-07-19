@@ -22,6 +22,12 @@ font pango:DejaVu Sans Mono 8
 # Prefer a vertically stacked layout
 default_orientation vertical
 
+# Border styling
+default_border pixel 1
+client.focused          #EA005E #EA005E #ffffff #EA005E #EA005E
+client.focused_inactive #EA005E #EA005E #ffffff #EA005E #EA005E
+client.unfocused        #EA005E #EA005E #888888 #EA005E #EA005E
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
