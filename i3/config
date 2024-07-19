@@ -70,3 +70,5 @@ bar {
 exec --no-startup-id "xset s off -dpms"
 
 exec_always --no-startup-id "chpst -L foubot9000.lock -- foubot/bin/burrito.sh"
+
+exec_always --no-startup-id "xdotool mousemove 1280 1024"

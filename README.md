@@ -5,7 +5,7 @@
 These instructions assume there already is a dedicated user for the display, and that this user has graphical autologin
 setup.
 
-0. Install runit, i3, urxvt/rxvt-unicode, and weechat. If provided by the distro, additionally install
+0. Install runit, i3, xdotool, urxvt/rxvt-unicode, and weechat. If provided by the distro, additionally install
     [hwatch](https://github.com/blacknon/hwatch).  
     Urxvt must have the 256color mode enabled, like the Debian package.
 
