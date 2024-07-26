@@ -8,8 +8,8 @@
     },
     "weechat": [
         "/server add libera irc.libera.chat -autoconnect",
-        "/set irc.server.libera.autojoin \"#foulab\"",
-        "/set irc.server.libera.nicks \"FouBot9000,FouBot9001,FouBot9002,FouBot9003,FouBot9004\"",
+        "/set irc.server.libera.autojoin \"###fluore\"",
+        "/set irc.server.libera.nicks \"FouBot9009,FouBot9001,FouBot9002,FouBot9003,FouBot9004\"",
         "/set irc.server.libera.realname \"Foulab IRC Display\"",
         "/set irc.server.libera.username \"fb9000\"",
         "/set weechat.bar.buflist.hidden on",
@@ -18,6 +18,10 @@
         "/set weechat.bar.title.hidden on",
         "/set weechat.bar.input.hidden on",
         "/set logger.level.irc 0",
-        "/set logger.level.core.weechat 0"
+        "/set logger.level.core.weechat 0",
+        "/set weechat.bar.status.color_bg 234",
+        "/set weechat.bar.status.color_bg_inactive 232",
+        "/set weechat.bar.title.color_bg 234",
+        "/set weechat.bar.title.color_bg_inactive 232"
     ]
 }
