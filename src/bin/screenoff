@@ -2,10 +2,10 @@
 
 import re
 import subprocess
-import sys
 import time
 
 BUTTON_PIN = 23
+
 
 def get_pin_state(pin: int) -> bool:
     p = subprocess.run(["raspi-gpio", "get", str(pin)], capture_output=True, text=True)
