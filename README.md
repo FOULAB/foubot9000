@@ -12,6 +12,9 @@ setup.
 1. Ensure the user running foubot9000 has the required permissions to access the GPIO. On RPi OS, it's the`gpio` group.
 
 2. As the foubot9000 user, run `install.py`.
+    > [!CAUTION]
+    > Executing this on your computer outside of a chroot ***will* override your configs** for i3, WeeChat, and Xresources.
+    > It *will* also pollute your home directory.
 
 3. In `~/foubot/bin/`, provide a wego binary patched for
     [broken functionality](https://github.com/schachmat/wego/pull/175), along with a build of hwatch if not already
