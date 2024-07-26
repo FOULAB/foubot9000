@@ -76,7 +76,7 @@ hasn't reached the packaged version on the target OS.
 
 ```shell
 # Spawn a windowed X server at "display" :1, with the same screen size as foubot9000
-Xephyr -br -ac -noreset -screen 1280x1024 :1
+Xephyr -br -ac -noreset -screen 1280x1024 -dpi 96 :1
 
 # Run i3 on :1
 DISPLAY=:1 i3
