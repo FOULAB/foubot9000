@@ -1,0 +1,89 @@
+#!/bin/env python3
+
+# Prints the next event fron an ICS calendar
+# Originally from kryma, with modifications to the formatting code
+
+import logging
+import re
+import shutil
+import sys
+import textwrap
+import urllib.request
+from datetime import datetime
+
+logging.getLogger().setLevel(logging.ERROR)
+
+if not len(sys.argv) > 1:
+    print("must pass a number of used terminal lines as first argument")
+    sys.exit(1)
+reserved_lines = int(sys.argv[1])
+
+# 34x13 is the actual size the terminal is in prod.
+# We need to define it as the explicit fallback since in prod hwatch eats the terminal size
+(TERM_W, TERM_H) = shutil.get_terminal_size((34, 13))
+
+# Number of remaining lines for the event
+USABLE_LINES = TERM_H - reserved_lines
+
+# The ICS calendar to use
+ICS_PATH = "https://foulab.org/ical/foulab.ics"
+
+# Text wrapper to fit the events in the terminal without overflow
+wrapper = textwrap.TextWrapper(width=TERM_W, max_lines=USABLE_LINES, placeholder=" ...")
+
+
+def bright_yellow(text: str):
+    # 9x is the escape sequence range for "bright without font bold"
+    return f"\033[93m{text}\033[0m"
+
+
+def bright_red(text: str):
+    return f"\033[91m{text}\033[0m"
+
+
+def get_ics():
+    with urllib.request.urlopen(ICS_PATH) as response:
+        return response.read().decode("utf-8")
+
+
+def get_events() -> list[tuple[str, datetime]]:
+    """Returns a list of (name, datetime) tuples."""
+    ics = get_ics()
+    events = []
+    for m in re.finditer("^BEGIN:VEVENT\\s*$(.*?)^END:VEVENT\\s*$", ics, flags=re.DOTALL | re.MULTILINE):
+        event = m.group(1)
+        try:
+            name = re.search("^SUMMARY:(.*)\\s*$", event, flags=re.MULTILINE).group(1).strip()
+            dt = re.search("^DTSTART(?:.*)?:(.*?)\\s*$", event, flags=re.MULTILINE).group(1)
+            events.append((name, datetime.strptime(dt, "%Y%m%dT%H%M%S")))
+        except Exception:
+            logging.warning(f"Could not parse event {event}", exc_info=True)
+    return events
+
+
+def format_event(event: tuple[str, datetime] | None):
+    if event is None:
+        return "\033[36mNo events yet...\033[0m"
+
+    # date length: 17
+    date = event[1].strftime('%d %h %I:%M %P: ')
+
+    # Padding to account for the length of the date string
+    wrapped = wrapper.wrap(17 * " " + event[0])
+
+    # Removing the padding on line 1
+    wrapped[0] = wrapped[0].lstrip()
+
+    return bright_yellow(date) + "\n".join(wrapped)
+
+
+try:
+    for event in get_events():
+        if datetime.now() < event[1]:
+            break
+    else:
+        event = None
+    print(format_event(event))
+except Exception:
+    print(bright_red("GETTING EVENTS FAILED"))
+    print(bright_red("Uh oh! Contact Tech Support on Mattermost"))
