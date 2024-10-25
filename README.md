@@ -5,9 +5,14 @@
 These instructions assume there already is a dedicated user for the display, and that this user has graphical autologin
 setup.
 
-0. Install runit, i3, xdotool, urxvt/rxvt-unicode, and weechat. If provided by the distro, additionally install
-    [hwatch](https://github.com/blacknon/hwatch).  
-    Urxvt must have the 256color mode enabled, like the Debian package.
+0. Install required packages programs
+    - **runit**
+    - **i3** (just the window manager and the bar, avoid the metapackages)
+    - **xdotool**
+    - **urxvt/rxvt-unicode**, must have the 256color mode enabled, like the Debian package.
+    - **weechat**
+    - **wego** version 2.3 or above, [build from source](#wego) if not avaialble from the distro.
+    - **[hwatch](https://github.com/blacknon/hwatch)**, [build from source](#hwatch) if not available from the distro.
 
 1. Ensure the user running foubot9000 has the required permissions to access the GPIO. On RPi OS, it's the`gpio` group.
 
@@ -16,9 +21,7 @@ setup.
     > Executing this on your computer outside of a chroot ***will* override your configs** for i3, WeeChat, and Xresources.
     > It *will* also pollute your home directory.
 
-3. In `~/foubot/bin/`, provide a wego binary patched for
-    [broken functionality](https://github.com/schachmat/wego/pull/175), along with a build of hwatch if not already
-    installed via package manager.
+3. If wego and/or hwatch have been built from source, place the binaries in `~/foubot/bin/`.
 
 4. Generate an [OpenWeatherMap](https://openweathermap.org) API key.
 
@@ -29,12 +32,11 @@ setup.
 
 ### Building from-source components
 
-#### Patched wego
+#### wego
 
-These steps are required for as long as [the fix for wego](https://github.com/schachmat/wego/pull/175) isn't merged and
-hasn't reached the packaged version on the target OS.
+***These steps are only required if the target OS does not provide a package for wego version 2.3 or above.***
 
-1. Clone the wego repo, and checkout the PR - OR -  apply the PR as a patch
+1. Download & extract the source tarball from the latest release of [wego](https://github.com/schachmat/wego).
 
 2. With go installed on the system, run
     ```shell
