@@ -9,7 +9,7 @@ import shutil
 import sys
 import textwrap
 import urllib.request
-from datetime import datetime
+from datetime import datetime, timedelta
 from typing import Optional
 
 logging.getLogger().setLevel(logging.ERROR)
@@ -32,6 +32,10 @@ ICS_PATH = "https://foulab.org/ical/foulab.ics"
 # Text wrapper to fit the events in the terminal without overflow
 wrapper = textwrap.TextWrapper(width=TERM_W, max_lines=USABLE_LINES, placeholder=" ...")
 
+
+def bright_green(text: str):
+    # 9x is the escape sequence range for "bright without font bold"
+    return f"\033[92m{text}\033[0m"
 
 def bright_yellow(text: str):
     # 9x is the escape sequence range for "bright without font bold"
@@ -62,7 +66,7 @@ def get_events() -> list[tuple[str, datetime]]:
     return events
 
 
-def format_event(event: Optional[tuple[str, datetime]]):
+def format_event(event: Optional[tuple[str, datetime]], right_now: bool):
     if event is None:
         return "\033[36mNo events yet...\033[0m"
 
@@ -75,16 +79,23 @@ def format_event(event: Optional[tuple[str, datetime]]):
     # Removing the padding on line 1
     wrapped[0] = wrapped[0].lstrip()
 
+    if right_now:
+        return bright_green(" ~ RIGHT NOW! ~  ") + "\n".join(wrapped)
+
     return bright_yellow(date) + "\n".join(wrapped)
 
 
+right_now = False
 try:
     for event in get_events():
         if datetime.now() < event[1]:
             break
+        elif datetime.now() - timedelta(minutes=30) < event[1]:
+            right_now = True
+            break
     else:
         event = None
-    print(format_event(event))
+    print(format_event(event, right_now))
 except Exception:
     print(bright_red("GETTING EVENTS FAILED"))
     print(bright_red("Uh oh! Contact Tech Support on Mattermost"))
