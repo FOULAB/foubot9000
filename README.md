@@ -40,10 +40,10 @@ setup.
 
 2. With go installed on the system, run
     ```shell
-    CGO_ENABLED=0 GOOS=linux GOARCH=arm GOARM=6 go build -o wego
+    CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go build -o wego
     ```
-    For another architecture than the original RPi1,
-    [adjust `GOARCH` and `GOARM` accordingly](https://go.dev/doc/install/source#environment)
+    For another architecture than a 64bit RPi,
+    [adjust `GOARCH` and `GOARM` accordingly](https://go.dev/doc/install/source#environment).
 
 3. Check that the binary is properly built `file wego`. Output should contain the right architecture,
     and ` statically linked`.
@@ -52,22 +52,22 @@ setup.
 
 ***These steps are only required if the target OS does not provide a package for hwatch.***
 
-0. Identify the right rust target triple. For the RPi1, it's `arm-unknown-linux-musleabi`.  
+0. Identify the right rust target triple. For a 64bit RPi, it's `aarch64-unknown-linux-musl`.  
     It's important to pick the target triple for the musl libc, as that is essentially required to statically build a
     rust program.
 
 1. Install a rust toolchain for the target triple. This can be done a number of ways, but rustup is recommended.
-    Using rustup, `rustup target add arm-unknown-linux-musleabi` shoudl be enough to install the toolchain.
+    Using rustup, `rustup target add aarch64-unknown-linux-musl` shoudl be enough to install the toolchain.
 
 2. Install the correct C crossbuilding toolchain. It must be for the right architecture and for the musl libc.  
-    This is often packaged by distros, for example on Void Linux the correct one for a RPi1 is provided by the
-    `cross-arm-linux-musleabi` package.
+    This is often packaged by distros, for example on Void Linux the correct one for a 64bit RPi is provided by the
+    `cross-aarch64-linux-musl` package.
 
 3. Clone the [hwatch repository](https://github.com/blacknon/hwatch) or download&extract the source tarball.
 
 4. Build hwatch with cargo:
     ```shell
-    RUSTFLAGS='-C linker=/usr/bin/arm-linux-musleabi-ld' cargo build --locked --release --target arm-unknown-linux-musleabi
+    RUSTFLAGS='-C linker=/usr/bin/aarch64-linux-musl-ld' cargo build --locked --release --target aarch64-unknown-linux-musl
     ```
     Where `--target` is the triple from step 0, and `linker=` is the `ld` binary provided by the cross toolchain.
 
