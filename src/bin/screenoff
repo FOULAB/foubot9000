@@ -5,6 +5,7 @@ import subprocess
 import time
 
 BUTTON_PIN = 23
+OVERRIDE_PIN = 12
 
 
 def get_pin_state(pin: int) -> bool:
@@ -23,7 +24,9 @@ state = True
 
 while True:
     time.sleep(2)
-    s = get_pin_state(BUTTON_PIN)
+    bs = get_pin_state(BUTTON_PIN)
+    os = get_pin_state(OVERRIDE_PIN)
+    s = bs or os
     if s == state:
         continue
     else:
