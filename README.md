@@ -10,6 +10,7 @@ setup.
     - **i3** (just the window manager and the bar, avoid the metapackages)
     - **xdotool**
     - **urxvt/rxvt-unicode**, must have the 256color mode enabled, like the Debian package.
+    - **fonts-symbola**, for emoji
     - **weechat**
     - **wego** version 2.3 or above, [build from source](#wego) if not avaialble from the distro.
     - **[hwatch](https://github.com/blacknon/hwatch)**, [build from source](#hwatch) if not available from the distro.
