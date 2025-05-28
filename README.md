@@ -7,8 +7,8 @@ setup.
 
 0. Install required packages programs
     - **runit**
-    - **i3** (just the window manager and the bar, avoid the metapackages)
-    - **xdotool**
+    - **awesomeWM** (just the window manager, avoid the metapackages/extras)
+    - **polybar** (avoid the metapackages/extras)
     - **urxvt/rxvt-unicode**, must have the 256color mode enabled, like the Debian package.
     - **weechat**
     - **wego** version 2.3 or above, [build from source](#wego) if not avaialble from the distro.
@@ -17,9 +17,10 @@ setup.
 1. Ensure the user running foubot9000 has the required permissions to access the GPIO. On RPi OS, it's the`gpio` group.
 
 2. As the foubot9000 user, run `install.py`.
-    > [!CAUTION]
-    > Executing this on your computer outside of a chroot ***will* override your configs** for i3, WeeChat, and Xresources.
-    > It *will* also pollute your home directory.
+> [!CAUTION]
+> Executing this on your computer outside of a chroot ***will* override your configs** for awesome, polybar,
+> WeeChat, and Xresources.
+> It *will* also pollute your home directory.
 
 3. If wego and/or hwatch have been built from source, place the binaries in `~/foubot/bin/`.
 
@@ -80,6 +81,6 @@ setup.
 # Spawn a windowed X server at "display" :1, with the same screen size as foubot9000
 Xephyr -br -ac -noreset -screen 1280x1024 -dpi 96 :1
 
-# Run i3 on :1
-DISPLAY=:1 i3
+# Run awesome on :1
+DISPLAY=:1 dbus-run-session awesome
 ```
