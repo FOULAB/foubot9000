@@ -4,6 +4,7 @@
     },
     "dirs": {
         "i3": ".config/i3",
+        "awesome": ".config/awesome",
         "src": "foubot"
     },
     "weechat": [
