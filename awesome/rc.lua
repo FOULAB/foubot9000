@@ -315,3 +315,22 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 
+
+--  ____  _             _
+-- / ___|| |_ __ _ _ __| |_ _   _ _ __
+-- \___ \| __/ _` | '__| __| | | | '_ \
+--  ___) | || (_| | |  | |_| |_| | |_) |
+-- |____/ \__\__,_|_|   \__|\__,_| .__/
+--                               |_|
+
+-- Disable *automatic* energy saving and blanking for the display
+awful.spawn({"xset", "s", "off", "-dpms"})
+
+-- Let Tßhe Show Begin!
+awful.spawn({"chpst", "-L", "fb9000.lock", "--", "foubot/bin/burrito.sh"})
+
+-- Mouse the mouse cursor out of view
+mouse.coords({
+    x = screen_width,
+    y = screen_height
+})
