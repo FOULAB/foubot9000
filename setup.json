@@ -3,7 +3,6 @@
         "Xresources": ".Xresources"
     },
     "dirs": {
-        "i3": ".config/i3",
         "awesome": ".config/awesome",
         "polybar": ".config/polybar",
         "src": "foubot"
