@@ -1,3 +1,3 @@
 #!/bin/sh
 
-exec urxvt -title 'foubot9000:météo' -fn "xft:DejaVu Sans Mono:size=22" -b 8 -e hwatch -ctx -n 300 -- run-wego.sh
+exec urxvt -title 'foubot9000:météo' -fn "xft:DejaVu Sans Mono:size=22,xft:Symbola" -b 8 -e hwatch -ctx -n 300 -- run-wego.sh
