@@ -9,15 +9,18 @@ OVERRIDE_PIN = 12
 
 
 def get_pin_state(pin: int) -> bool:
-    p = subprocess.run(["raspi-gpio", "get", str(pin)], capture_output=True, text=True)
+    p = subprocess.run(["pinctrl", "get", str(pin)], capture_output=True, text=True)
     if p.returncode != 0:
-        print("Failed to run raspi-gpio")
+        print("Failed to run pinctrl")
         return True
     if not p.stdout:
-        print("No output from raspi-gpio")
+        print("No output from pinctrl")
         return True
-    m = re.search(r"level=(\d+)", p.stdout)
-    return bool(int(m.group(1)))
+    m = re.search(r"\| (hi|lo) //", p.stdout)
+    if m is None:
+        print(f"Parsing error! string = {p.stdout}")
+        return True
+    return False if m.group(1) == "lo" else True
 
 
 state = True
