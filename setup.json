@@ -8,7 +8,7 @@
         "src": "foubot"
     },
     "weechat": [
-        "/server add libera irc.libera.chat -autoconnect",
+        "/server add libera irc.libera.chat -autoconnect -tls",
         "/set irc.server.libera.autojoin \"#foulab\"",
         "/set irc.server.libera.nicks \"FouBot9000,FouBot9001,FouBot9002,FouBot9003,FouBot9004\"",
         "/set irc.server.libera.realname \"Foulab IRC Display\"",
