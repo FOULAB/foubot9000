@@ -1,3 +1,0 @@
-#!/bin/sh
-
-exec urxvt -title 'foubot9000:placeholder' -fn "xft:DejaVu Sans Mono:size=8" -b 8 -e cmatrix
